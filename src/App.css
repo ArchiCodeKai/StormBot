@@ -1,0 +1,124 @@
+.app-bg {
+  min-height: 100vh;
+  background: url('/weather.jpg') center/cover no-repeat fixed;
+  position: relative;
+}
+
+
+/* 強化版毛玻璃卡片 */
+.glass-card,
+.box.glass-card {
+  background: rgba(255, 255, 255, 0.229);
+  border-radius: 22px;
+  box-shadow: 0 8px 36px 0 rgba(31,38,135,0.18), 0 1.5px 16px 0 rgba(70,140,220,0.06);
+  backdrop-filter: blur(28px) saturate(190%);
+  border: none;
+  transition: box-shadow 0.25s, background 0.25s;
+}
+
+/* Hover 時再亮一點 */
+.glass-card:hover,
+.box.glass-card:hover {
+  background: rgba(255, 255, 255, 0.322);
+  box-shadow: 0 12px 44px 0 rgba(31,38,135,0.23), 0 2px 20px 0 rgba(70,140,220,0.13);
+}
+
+.alertchart-modern {
+  background: rgba(255,255,255,0.17);
+  border-radius: 22px;
+  border: 1.5px solid rgba(220,235,255,0.22);
+  box-shadow: 0 8px 36px 0 rgba(44,80,120,0.12), 0 2px 10px 0 rgba(120,180,255,0.08);
+  backdrop-filter: blur(26px) saturate(175%);
+  /* 玻璃霧效果 */
+}
+
+.chart-title-glow {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #e9eced 10%, #e0e9ff 70%, #8a8b8d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  text-align: left;
+  line-height: 1.2;
+  word-break: break-all;
+  white-space: pre-line;
+}
+
+/* 若只用 .box 也套用 */
+.box {
+  background: rgba(255,255,255,0.23);
+  border-radius: 20px;
+  box-shadow: 0 6px 28px 0 rgba(31,38,135,0.14);
+  border: 1.2px solid rgba(255,255,255,0.21);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+.menu-button {
+  background: rgba(255,255,255,0.14);
+  border-radius: 16px;
+  padding: 12px 22px;
+  margin: 0 12px;
+  color: #2e4666;
+  transition: background 0.16s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 6px 0 rgba(30,80,200,0.05);
+  border: 1.1px solid rgba(255,255,255,0.16);
+}
+.menu-button.active,
+.menu-button:active {
+  background: rgba(108,196,255,0.21);
+  color: #0085e8;
+  box-shadow: 0 6px 24px 0 rgba(30,80,200,0.10);
+  border: 1.5px solid rgba(90,170,255,0.22);
+}
+.menu-button .icon {
+  margin-right: 8px;
+}
+
+
+.message-bubble-ai {
+  background: rgba(201, 197, 197, 0.258);
+  color: #225;
+  backdrop-filter: blur(10px) saturate(150%);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  border: 1px solid rgba(129, 127, 127, 0.22);
+}
+.message-bubble-user {
+  background: rgba(17, 79, 130, 0.317);
+  color: #124099;
+  backdrop-filter: blur(10px) saturate(150%);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.header-flex-row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.header-flex-row > * {
+  flex: 1 1 230px;      /* 初始寬度 230 */
+  max-width: 430px;
+  min-width: 200px;
+  box-sizing: border-box;
+}
+
+/* RWD — 標題自動縮小與換行 */
+@media (max-width: 900px) {
+  .chart-title-glow {
+    font-size: 0.93rem;
+    letter-spacing: 1.3px;
+    padding-right: 0;
+  }
+}
+@media (max-width: 600px) {
+  .chart-title-glow {
+    font-size: 0.87rem;
+    padding-right: 0;
+  }
+}
