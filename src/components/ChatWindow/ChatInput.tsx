@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 interface ChatInputProps {
   onSend: (text: string) => void;
@@ -10,6 +10,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, onSendImage, disabled = f
   const [input, setInput] = useState('');
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null); //Enter之後自動focus
 
   // 支援 jpg, png, gif
   const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/gif'];
@@ -70,6 +71,10 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, onSendImage, disabled = f
       onSend(input);
       setInput('');
     }
+    // 修正：一定要 setTimeout，才能保證 focus
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
   };
 
   // Enter送出
@@ -123,11 +128,12 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, onSendImage, disabled = f
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             onPaste={handlePaste}
-            disabled={disabled}
+            ref={inputRef}
           />
         </div>
         <div className="control">
           <button
+            type="button"
             className="button is-link"
             onClick={handleSend}
             disabled={disabled || (!input.trim() && imageFiles.length === 0)}
