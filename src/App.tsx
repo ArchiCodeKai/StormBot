@@ -15,7 +15,7 @@ const App: React.FC = () => (
       <div
         className="columns is-gapless"
         style={{
-          height: `calc(100vh - ${HEADER_HEIGHT}px)`, // 減掉 header 高度
+          height: `calc(75vh - ${HEADER_HEIGHT}px)`, // 減掉 header 高度
           alignItems: 'stretch',
           minHeight: 0,
         }}

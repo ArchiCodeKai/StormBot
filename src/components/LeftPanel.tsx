@@ -9,6 +9,8 @@ const LeftPanel: React.FC = () => (
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
+      width: '100%',
+      padding:15,
       minHeight: 0, // flex: 1 需要
     }}
   >

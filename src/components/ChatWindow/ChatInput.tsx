@@ -83,7 +83,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, onSendImage, disabled = f
   };
 
   return (
-    <div className="p-3 has-background-white" style={{ borderTop: '1px solid #eee' }}>
+    <div className="p-3 has-background-white" style={{ borderTop: '1px solid #eee', borderRadius: '0 0 20px 20px' }}>
       {/* 多圖預覽區 */}
       {imagePreviews.length > 0 && (
         <div className="mb-2 is-flex is-align-items-center" style={{ gap: 8 }}>

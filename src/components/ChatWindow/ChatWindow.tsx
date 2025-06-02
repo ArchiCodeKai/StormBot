@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ChatHeader from './ChatHeader';
 import MessageBubble from './MessageBubble';
 import ChatInput from './ChatInput';
-import * as chatApi from '../../services/chatApi'; // ← 依你的目錄修正
+import * as chatApi from '../../services/chatApi'; // ← 根據你的目錄修正
 
 type Message = chatApi.Message;
 
@@ -12,13 +12,38 @@ const ChatWindow: React.FC = () => {
   ]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
 
+  // scrollbar 控制
+  const scrollPanelRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const [scrolling, setScrolling] = useState(false);
+
+  // 1. 控制滾動時 .scrolling
+  useEffect(() => {
+    const panel = scrollPanelRef.current;
+    if (!panel) return;
+
+    let timer: ReturnType<typeof setTimeout>;
+    const handleScroll = () => {
+      setScrolling(true);
+      clearTimeout(timer);
+      timer = setTimeout(() => setScrolling(false), 1000); // 1 秒後消失
+    };
+
+    panel.addEventListener('scroll', handleScroll);
+
+    return () => {
+      panel.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  // 2. 新訊息自動滾到最底
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // 1. 傳送文字訊息
+  // 3. 傳送訊息邏輯
   const handleSend = async (text: string) => {
     if (!text.trim() || loading) return;
     const userMsg: Message = { id: `${Date.now()}_user`, from: 'user', type: 'text', text };
@@ -27,7 +52,6 @@ const ChatWindow: React.FC = () => {
     setError(null);
 
     try {
-      // 模擬 API 回傳
       const reply = await chatApi.sendMessage(text, localStorage.getItem('token') || '');
       setMessages(prev => [...prev, reply]);
     } catch (e) {
@@ -36,7 +60,6 @@ const ChatWindow: React.FC = () => {
     setLoading(false);
   };
 
-  // 2. 傳送多圖（group bubble）及附加文字
   const handleSendImage = async (files: File[], desc?: string) => {
     if (loading) return;
     setMessages(prev => [
@@ -53,7 +76,6 @@ const ChatWindow: React.FC = () => {
     setError(null);
 
     try {
-      // 模擬 API 回傳
       const replies = await chatApi.uploadImages(files, desc || '', localStorage.getItem('token') || '');
       setMessages(prev => [...prev, ...replies]);
     } catch (e) {
@@ -67,19 +89,22 @@ const ChatWindow: React.FC = () => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',       // 填滿父層
+        height: '100%',
         minHeight: 0,
+        borderRadius: '0', // 外層可再設圓角
       }}
     >
       <ChatHeader />
       <div
+        ref={scrollPanelRef}
+        className={`glass-card${scrolling ? ' scrolling' : ''}`}
         style={{
           flex: 1,
           overflowY: 'auto',
           minHeight: 0,
-          padding: '0.75rem', // bulma .px-3 .py-2 約等於 12px
+          padding: '0.75rem',
+          borderRadius: '0', // 中間層無圓角
         }}
-        className="glass-card"
       >
         {messages.map(msg => (
           <MessageBubble

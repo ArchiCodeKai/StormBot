@@ -8,6 +8,7 @@ const ChatHeader: React.FC = () => {
         borderBottom: '1px solid #eee',
         minHeight: 56,
         background: 'rgba(255,255,255,0.18)',
+        borderRadius: '20px 20px 0 0',
 
       }}
     >

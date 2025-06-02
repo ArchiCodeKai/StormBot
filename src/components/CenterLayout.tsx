@@ -22,9 +22,9 @@ const CenterLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         width: '100%',
         maxWidth: MAX_WIDTH,
         maxHeight: MAX_HEIGHT,
-        minHeight: 660,
-        minWidth: 960,
-        background: 'url(/weather.jpg) center/cover no-repeat fixed',
+        minHeight: 560,
+        minWidth: 860,
+        background: 'url(/weather2.jpg) center/cover no-repeat fixed',
         borderRadius: 40,
         boxShadow: '0 0 56px 0 #0004, 0 4px 32px 0 #8cecf455',
         display: 'flex',
@@ -33,7 +33,7 @@ const CenterLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         margin: '48px 0', // 上下預留空間
         overflow: 'hidden',
         backdropFilter: 'blur(32px) saturate(175%)',
-        border: '1.5px solid rgba(220,235,255,0.22)',
+        border: '0.8px solid rgba(220,235,255,0.22)',
       }}
     >
       {children}

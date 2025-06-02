@@ -35,6 +35,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
           maxWidth: '75%',
           wordBreak: 'break-word',
           whiteSpace: 'pre-line',
+          
         }}
       >
         {/* 多圖 group bubble */}

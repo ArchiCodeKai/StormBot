@@ -4,8 +4,7 @@
   position: relative;
 }
 
-
-/* 強化版毛玻璃卡片 */
+/* 強化版毛玻璃卡片（主要卡片共用） */
 .glass-card,
 .box.glass-card {
   background: rgba(255, 255, 255, 0.229);
@@ -23,6 +22,7 @@
   box-shadow: 0 12px 44px 0 rgba(31,38,135,0.23), 0 2px 20px 0 rgba(70,140,220,0.13);
 }
 
+/* 災害統計用 alert 卡片毛玻璃效果 */
 .alertchart-modern {
   background: rgba(255,255,255,0.17);
   border-radius: 22px;
@@ -32,8 +32,59 @@
   /* 玻璃霧效果 */
 }
 
+/* ===================== */
+/* 訊息對話視窗專用 Scrollbar 整合樣式 (不會讓內容左右晃動) */
+/*
+  - Scrollbar 佔位空間永遠都在（避免 UI 跳動）
+  - 預設滑塊 thumb 為透明，只在滾動/hover 時淡入出現（動畫）
+  - 軌道（track）與空間常駐，維持毛玻璃質感
+  - 支援 Webkit (Chrome, Edge, Safari)
+  - 無上下箭頭
+*/
+/* ===================== */
+
+/* Scrollbar 本身佔位與軌道底色一直都在 */
+.glass-card::-webkit-scrollbar {
+  width: 10px; /* 滑塊寬度 */
+  background: transparent; /* 軌道底色一直在 */
+}
+
+/* Scrollbar 滑塊（thumb）— 預設透明，淡入淡出動畫 */
+.glass-card::-webkit-scrollbar-thumb {
+  background: rgba(90, 150, 255, 0.45); /* 半透明藍色 */
+  border-radius: 8px;
+  backdrop-filter: blur(10px) saturate(160%);
+  border: 2px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 8px 0 rgba(50,90,200,0.11);
+  opacity: 0; /* 預設不可見但佔位 */
+  transition: opacity 0.5s cubic-bezier(.62,.01,.36,1.02);
+}
+
+/* 只有滾動或滑鼠 hover scroll bar 時才出現 thumb（滑桿） */
+.glass-card.scrolling::-webkit-scrollbar-thumb,
+.glass-card:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+/* Scrollbar 軌道（track）也有毛玻璃霧白感 */
+.glass-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.11); /* 微微霧白 */
+  border-radius: 10px;
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+/* 移除上下箭頭（Webkit Only） */
+.glass-card::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+/* ===================== */
+
+/* 統計標題漸層字 */
 .chart-title-glow {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 2px;
   background: linear-gradient(90deg, #e9eced 10%, #e0e9ff 70%, #8a8b8d 100%);
@@ -75,7 +126,7 @@
   margin-right: 8px;
 }
 
-
+/* 對話訊息泡泡（AI） */
 .message-bubble-ai {
   background: rgba(201, 197, 197, 0.258);
   color: #225;
@@ -84,6 +135,7 @@
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
   border: 1px solid rgba(129, 127, 127, 0.22);
 }
+/* 對話訊息泡泡（使用者） */
 .message-bubble-user {
   background: rgba(17, 79, 130, 0.317);
   color: #124099;
