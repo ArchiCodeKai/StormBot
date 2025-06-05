@@ -1,0 +1,104 @@
+.glass-menu-card {
+  position: relative;
+  overflow: visible;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0; 
+  width: 100%;  
+  padding: 0.3rem 2rem 0.3rem  2rem ;  
+  margin: 0 auto;
+}
+.glass-menu-card::before,
+.glass-menu-card::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.glass-menu-card::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.19) 2%, rgba(255,255,255,0) 100%);
+}
+.glass-menu-card::after {
+  right: 0;
+  background: linear-gradient(-90deg, rgba(255,255,255,0.19) 2%, rgba(255,255,255,0) 100%);
+}
+
+.glass-menu-btn {
+  flex: 1 1 0;
+  margin: 0 8px;
+  background: rgba(255,255,255,0.17);
+  border-radius: 15px;
+  border: 1.5px solid rgba(190, 190, 190, 0.22);
+  box-shadow: 0 2px 14px 0 #15465f33;
+  color: #fff;
+  font-weight: 500;
+  min-height: 64px;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 6px 0;
+  overflow: hidden;
+  transition: box-shadow 0.22s, background 0.21s, color 0.18s;
+}
+
+.glass-menu-btn.active,
+.glass-menu-btn:active {
+  background: rgba(210,230,255,0.16);
+  box-shadow: 0 8px 32px #fff6, 0 2px 16px 0 #b6d0fc77;
+}
+
+.menu-icon {
+  font-size: 28px;
+  margin-bottom: 2px;
+  background: linear-gradient(120deg,#fff 10%,#bdd6f8 60%,#3c4c7e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 6px #eaf6fc88);
+}
+
+.menu-label {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  font-size: 14.5px;
+}
+
+.menu-badge {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  background: linear-gradient(90deg, #153fc7 40%, #3381e7 100%);
+  color: #fff;
+  border-radius: 12px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  border: 1.1px solid #fff2;
+  box-shadow: 0 1px 6px #3381e733;
+  letter-spacing: 0.5px;
+  display: none;
+}
+
+/* 閃亮動畫（Motion One會動） */
+.menu-shine {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 44%;
+  height: 100%;
+  background: linear-gradient(110deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.44) 60%, rgba(255,255,255,0.07) 100%);
+  transform: skewX(-26deg);
+  opacity: 0;
+  filter: blur(1.4px);
+  z-index: 2;
+  transition: none;
+}

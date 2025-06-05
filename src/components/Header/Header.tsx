@@ -23,7 +23,7 @@ const floodLevels = [
 
 const Header: React.FC = () => (
   <header className="px-4 py-3" style={{
-  background: 'rgba(38,197,218,0.07)',
+  
   minHeight: 260,
 }}>
     <div className="is-flex is-align-items-center mb-4">

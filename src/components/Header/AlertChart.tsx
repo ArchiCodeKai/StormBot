@@ -54,7 +54,7 @@ const AlertChart: React.FC<AlertChartProps> = ({
         <div key={idx} style={{
           minWidth: 60,
           fontSize: 14,
-          color: 'rgba(222,235,255,0.90)',
+          color: 'rgba(255, 255, 255, 0.95)',
           letterSpacing: 1,
           textShadow: '0 1px 4px #b6e7ff99',
           fontWeight: 500,
@@ -63,8 +63,8 @@ const AlertChart: React.FC<AlertChartProps> = ({
           <span style={{
             fontWeight: 700,
             fontSize: 14,
-            color: 'rgba(255,255,255,0.93)',
-            textShadow: '0 0 8px #94e6ff88, 0 2px 12px #318cff55'
+            color: 'rgba(255, 255, 255, 0.93)',
+            textShadow: '0 0 8pxrgba(160, 205, 219, 0.53), 0 2px 12pxrgba(95, 146, 209, 0.33)'
           }}>{level.value}</span>
         </div>
       ))}
@@ -81,7 +81,7 @@ const AlertChart: React.FC<AlertChartProps> = ({
             height: 13,
             marginBottom: 7,
             borderRadius: 8,
-            background: 'rgba(220,230,255,0.12)',
+            background: 'rgba(101, 130, 160, 0.29)',
             position: 'relative',
             overflow: 'hidden'
           }}

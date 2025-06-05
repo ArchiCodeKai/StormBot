@@ -6,11 +6,15 @@ const MapPanel: React.FC = () => (
   <div
     className="section glass-card"
     style={{
-      position: 'relative',
-      height: '100%', // 改成百分比，才能和左側同步
-      padding: 0,
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
+      minHeight: 0,
+      padding: 0,
+      boxSizing: 'border-box',
+      borderRadius: 20, 
+      background: 'rgba(255,255,255,0.09)',
+      boxShadow: '0 2px 8pxrgb(207, 207, 207)',
     }}
   >
     <WeatherMap />
