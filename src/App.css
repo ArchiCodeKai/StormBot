@@ -160,6 +160,12 @@
   box-sizing: border-box;
 }
 
+.bar-race-expanded {
+  z-index: 20;    
+  position: relative !important;  /* 一定要 relative */
+  box-shadow: 0 12px 56px 0 rgba(31,38,135,0.22); /* 展開時更浮出 */
+}
+
 /* RWD — 標題自動縮小與換行 */
 @media (max-width: 900px) {
   .chart-title-glow {
