@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import LeftPanel from './components/LeftPanel';
 import MapPanel from './components/MapPanel/MapPanel';
 import CenterLayout from './components/CenterLayout';
+import 'leaflet/dist/leaflet.css';
 import './App.css';
 import './Sidebar.css';
 

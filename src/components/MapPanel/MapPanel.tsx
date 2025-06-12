@@ -12,9 +12,10 @@ const MapPanel: React.FC = () => (
       minHeight: 0,
       padding: 0,
       boxSizing: 'border-box',
-      borderRadius: 20, 
+      borderRadius: 20,
       background: 'rgba(255,255,255,0.09)',
-      boxShadow: '0 2px 8pxrgb(207, 207, 207)',
+      boxShadow: '0 2px 8px rgb(207, 207, 207)',
+      position: 'relative'
     }}
   >
     <WeatherMap />
