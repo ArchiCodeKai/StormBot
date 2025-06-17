@@ -1,39 +1,26 @@
 // src/services/chatApi.ts
 
-// 型別定義
 export type Message = {
   id: string;
   from: 'ai' | 'user';
-  type: 'text' | 'image' | 'file' | 'group';
+  type: 'text' | 'image';
   text?: string;
-  images?: string[];
-  imageUrl?: string;
-  fileUrl?: string;
-  fileName?: string;
+  imageUrl?: string; // 後端回傳的圖片網址
 };
 
-// 1. 送出訊息
+// 發送文字訊息給機器人
 export async function sendMessage(text: string, token: string): Promise<Message> {
-  // 假資料 (mock)
-  await new Promise(r => setTimeout(r, 1000)); // 模擬延遲
-  return {
-    id: `${Date.now()}_ai`,
-    from: 'ai',
-    type: 'text',
-    text: `[AI回覆] 你說：「${text}」`,
-  };
-}
-
-// 2. 上傳圖片訊息
-export async function uploadImages(files: File[], desc: string, token: string): Promise<Message[]> {
-  await new Promise(r => setTimeout(r, 1200));
-  return [
-    {
-      id: `${Date.now()}_ai_group`,
-      from: 'ai',
-      type: 'group',
-      images: files.map(file => URL.createObjectURL(file)),
-      text: '[AI] 圖片已收到！' + (desc ? ` 說明: ${desc}` : ''),
-    }
-  ];
+  const res = await fetch('http://後端IP:Port/api/Chat/SendMessage', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({ input: text }) // 根據你後端 DTO 改參數
+  });
+  if (!res.ok) {
+    if (res.status === 401) throw new Error('401');
+    throw new Error('Server Error');
+  }
+  return await res.json();
 }
