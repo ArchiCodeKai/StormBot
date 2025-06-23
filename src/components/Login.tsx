@@ -10,26 +10,25 @@ const Login: React.FC<{ onLoginSuccess: () => void }> = ({ onLoginSuccess }) => 
     e.preventDefault();
     setError('');
     try {
-      // 這裡請根據你後端 API 修改
-      const res = await fetch('http://172.29.219.9:5010/Account/Login', {
+      // 用 application/json 格式呼叫
+      const res = await fetch('http://127.0.0.1:5010/api/AccountApi/Login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           Username: username,
           Password: password,
           RedirectUri: '/Account/LoginSuccess',
         }),
-        credentials: 'include', // 如果你後端用 cookie 登入
       });
 
       if (res.ok) {
-        // 可根據實際情況取 token，這邊假設回傳 json 裡有 token
-        // const data = await res.json();
-        // localStorage.setItem('token', data.token);
-        // 若無 token（只靠 cookie），這行可省略
-        onLoginSuccess(); // 跳轉主頁
+        const data = await res.json();
+        if (data.success && data.token) {
+          localStorage.setItem('token', data.token);  // <--- 儲存 token
+          onLoginSuccess(); // 通知 App 已登入
+        } else {
+          setError('帳號或密碼錯誤');
+        }
       } else {
         setError('帳號或密碼錯誤');
       }
